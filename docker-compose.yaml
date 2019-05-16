@@ -1,0 +1,16 @@
+version: '3'
+services:
+  server:
+    image: php-grpc
+    command: ["rr-grpc", "serve"]
+    networks:
+    - grpc-php
+  client:
+    image: php-grpc
+    command: ["composer", "run", "client"]
+    depends_on:
+    - server
+    networks:
+    - grpc-php
+networks:
+  grpc-php:

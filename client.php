@@ -5,7 +5,7 @@ require dirname(__FILE__).'/vendor/autoload.php';
 use \Service\GreeterClient;
 use \Service\Message;
 
-$client = new GreeterClient("localhost:9001", [
+$client = new GreeterClient("server:9001", [
     "credentials" => Grpc\ChannelCredentials::createInsecure(),
 ]);
 
@@ -15,6 +15,9 @@ function testSync(\Service\GreeterClient $client) {
     for($i = 0; $i < 10000; ++$i) {
         $msg = new Message();
         $client->sayHello($msg->setName("Hello"))->wait();
+        if ($i % 100 == 0) {
+            echo("Sent $i requests\n");
+        }
     }
     $end = microtime(true);
     $time = ($end - $start) * 1000;

@@ -29,3 +29,5 @@ RUN rm -rf /grpc
 WORKDIR /app
 ADD composer.json composer.lock ./
 RUN composer install
+
+ADD . /app
