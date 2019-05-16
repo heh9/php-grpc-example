@@ -21,7 +21,7 @@ function testSync(\Service\GreeterClient $client) {
     }
     $end = microtime(true);
     $time = ($end - $start) * 1000;
-    echo("Took $time ms for 10,000 synchronous calls\n");
+    echo("Took $time ms for 10000 synchronous calls\n");
 }
 
 testSync($client);
